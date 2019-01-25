@@ -15,7 +15,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
 
-@WebFilter("/bucket.jsp")// very good endpoint naming
+@WebFilter("/bucket.jsp")
 public class BucketFilter implements Filter {
 
     private FilterService filterService = FilterService.getFilterService();

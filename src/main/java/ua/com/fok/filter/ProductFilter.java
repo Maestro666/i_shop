@@ -15,7 +15,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
 
-@WebFilter("/product")
+@WebFilter("/singleProduct")
 public class ProductFilter implements Filter {
     private FilterService filterService = FilterService.getFilterService();
 
