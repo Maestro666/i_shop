@@ -24,11 +24,11 @@ import ua.com.fok.service.impl.ProductServiceImplementation;
 @WebServlet("/buckets")
 public class BucketsController extends HttpServlet {
 
-    private BucketService bucketService = BucketServiceImplementation.getBucketService();
+    private	BucketService bucketService = BucketServiceImplementation.getBucketService();
     private ProductService productService = ProductServiceImplementation.getProductService();
 
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<Bucket> buckets = bucketService.readAll();
         Map<Integer, Product> idToProduct = productService.readAllMap();
         List<BucketDto> listOfBucketDtos = map(buckets, idToProduct);
@@ -40,14 +40,14 @@ public class BucketsController extends HttpServlet {
     }
 
 
-    public List<BucketDto> map(List<Bucket> buckets, Map<Integer, Product> idToProduct){
+    private List<BucketDto> map(List<Bucket> buckets, Map<Integer, Product> idToProduct){
 
         return	buckets.stream().map(bucket->{
             BucketDto bucketDto = new BucketDto();
             bucketDto.bucketId = bucket.getId();
             bucketDto.purchaseDate = bucket.getPurchaseDate();
 
-            Product product = idToProduct.get(bucket.getProductId());
+            Product product = idToProduct.get(bucket.getProduct().getId());
             bucketDto.name = product.getName();
             bucketDto.description = product.getDescription();
             bucketDto.price = product.getPrice();

@@ -1,6 +1,5 @@
 package ua.com.fok.service.impl;
 
-import org.apache.log4j.Logger;
 import ua.com.fok.dao.ProductDao;
 import ua.com.fok.dao.impl.ProductDaoImplementation;
 import ua.com.fok.domain.Product;
@@ -13,16 +12,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ProductServiceImplementation implements ProductService {
-    private static Logger LOGGER = Logger.getLogger(ProductServiceImplementation.class);
     private static ProductService productServiceImpl;
     private ProductDao productDao;
 
     private ProductServiceImplementation() {
-        try {
-            productDao = new ProductDaoImplementation();
-        } catch (ClassNotFoundException | SQLException e) {
-            LOGGER.error(e);
-        }
+        productDao = new ProductDaoImplementation();
     }
 
     public static ProductService getProductService() {

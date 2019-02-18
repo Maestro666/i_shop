@@ -3,7 +3,7 @@ package ua.com.fok.dto;
 import java.util.Date;
 
 public class BucketDto {
-    public Integer bucketId;
+    public String bucketId;
     public String name;
     public String description;
     public Double price;

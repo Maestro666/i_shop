@@ -1,6 +1,5 @@
 package ua.com.fok.service.impl;
 
-import org.apache.log4j.Logger;
 import ua.com.fok.dao.UserDao;
 import ua.com.fok.dao.impl.UserDaoImplementation;
 import ua.com.fok.domain.User;
@@ -10,16 +9,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImplementation implements UserService {
-    private static Logger LOGGER = Logger.getLogger(UserServiceImplementation.class);
     private static UserService userServiceImpl;
     private UserDao userDao;
 
     private UserServiceImplementation() {
-        try {
-            userDao = new UserDaoImplementation();
-        } catch (ClassNotFoundException | SQLException e) {
-            LOGGER.error(e);
-        }
+        userDao = new UserDaoImplementation();
     }
 
     public static UserService getUserService() {

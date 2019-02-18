@@ -1,10 +1,25 @@
 package ua.com.fok.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "product")
 public class Product {
+    @Id
+    @GeneratedValue
     private Integer id;
+
+    @Column
     private String name;
+
+    @Column
     private String description;
+
+    @Column
     private Double price;
+
+    public Product() {
+    }
 
     public Product(Integer id, String name, String description, Double price) {
         this.id = id;
@@ -52,34 +67,47 @@ public class Product {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Product product = (Product) o;
-
-        if (!id.equals(product.id)) return false;
-        if (!name.equals(product.name)) return false;
-        if (!description.equals(product.description)) return false;
-        return price.equals(product.price);
-    }
-
-    @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + price.hashCode();
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((price == null) ? 0 : price.hashCode());
         return result;
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Product other = (Product) obj;
+        if (description == null) {
+            if (other.description != null)
+                return false;
+        } else if (!description.equals(other.description))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        if (price == null) {
+            return other.price == null;
+        } else return price.equals(other.price);
+    }
+
+    @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                '}';
+        return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
     }
 }

@@ -1,25 +1,17 @@
 package ua.com.fok.service.impl;
 
-import org.apache.log4j.Logger;
 import ua.com.fok.dao.BucketDao;
 import ua.com.fok.dao.impl.BucketDaoImplementation;
 import ua.com.fok.domain.Bucket;
 import ua.com.fok.service.BucketService;
-
-import java.sql.SQLException;
 import java.util.List;
 
 public class BucketServiceImplementation implements BucketService {
-    private static Logger LOGGER = Logger.getLogger(BucketServiceImplementation.class);
     private static BucketService bucketServiceImpl;
     private BucketDao bucketDao;
 
     private BucketServiceImplementation() {
-        try {
-            bucketDao = new BucketDaoImplementation();
-        } catch (ClassNotFoundException | SQLException e) {
-            LOGGER.error(e);
-        }
+        bucketDao = new BucketDaoImplementation();
     }
 
     public static BucketService getBucketService() {
